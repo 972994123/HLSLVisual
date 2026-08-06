@@ -20,7 +20,7 @@
         <div class="panel-heading"><div><p class="eyebrow">FUNCTION 01</p><h1>曲线表达式</h1></div><span class="status" id="status" data-state="ready">已编译</span></div>
         <label class="code-label" for="code-input">HLSL / 类 HLSL</label>
         <div class="editor-wrap"><span class="editor-prefix">float y =</span><textarea id="code-input" spellcheck="false" aria-label="输入 HLSL 曲线代码">smoothstep(x)</textarea></div>
-        <p class="hint">每行输入一条曲线；也支持变量嵌套：<code>float t = ...;</code> → <code>y = ...;</code></p>
+        <p class="hint">每个赋值都会绘制曲线，支持嵌套：<code>k = x + 1;</code> → <code>y = k + 1;</code></p>
         <div class="range-grid"><label><span>X 最小值</span><input id="x-min" type="number" value="-999" step="1" /></label><label><span>X 最大值</span><input id="x-max" type="number" value="999" step="1" /></label></div>
         <div class="section-title"><span>常用 HLSL 函数</span></div>
         <div class="function-list">
