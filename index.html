@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shader Curve Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="Shader Curve Lab 首页"><span class="brand-mark">∿</span><span>Shader Curve Lab</span></a>
+      <div class="topbar-actions"><span class="shortcut">滚轮缩放 · 拖拽平移</span><button class="button" id="reset-view" type="button">重置视图</button></div>
+    </header>
+    <section class="workspace">
+      <aside class="editor-panel">
+        <div class="panel-heading"><div><p class="eyebrow">FUNCTION 01</p><h1>曲线表达式</h1></div><span class="status" id="status" data-state="ready">已编译</span></div>
+        <label class="code-label" for="code-input">HLSL / 类 HLSL</label>
+        <div class="editor-wrap"><span class="editor-prefix">float y =</span><textarea id="code-input" spellcheck="false" aria-label="输入 HLSL 曲线代码">smoothstep(x)</textarea></div>
+        <p class="hint">输入右侧表达式，或完整语句：<code>y = ...</code> / <code>return ...;</code></p>
+        <div class="range-grid"><label><span>X 最小值</span><input id="x-min" type="number" value="-999" step="1" /></label><label><span>X 最大值</span><input id="x-max" type="number" value="999" step="1" /></label></div>
+        <div class="section-title"><span>常用 HLSL 函数</span></div>
+        <div class="function-list">
+          <button class="function-chip" data-snippet="smoothstep(x)" type="button"><code>smoothstep(x)</code><small>平滑阶跃</small></button>
+          <button class="function-chip" data-snippet="saturate(x)" type="button"><code>saturate(x)</code><small>限制至 0–1</small></button>
+          <button class="function-chip" data-snippet="sin(x * 6.28318)" type="button"><code>sin(x)</code><small>正弦</small></button>
+          <button class="function-chip" data-snippet="pow(abs(x), 2.0)" type="button"><code>pow(x, 2)</code><small>幂函数</small></button>
+          <button class="function-chip" data-snippet="lerp(0.15, 1.0, smoothstep(x))" type="button"><code>lerp(a,b,t)</code><small>线性插值</small></button>
+          <button class="function-chip" data-snippet="frac(x)" type="button"><code>frac(x)</code><small>小数部分</small></button>
+        </div>
+        <div class="error-box" id="error-box" hidden></div>
+        <footer class="editor-footer"><span><i></i> 每次输入自动更新</span><span>1024 samples</span></footer>
+      </aside>
+      <section class="graph-panel" aria-label="函数曲线坐标图">
+        <div class="graph-toolbar"><div class="legend"><span class="legend-line"></span><code id="legend-code">y = smoothstep(x)</code></div><div class="coordinate-readout" id="coordinate-readout">x 0.000 · y 0.000</div></div>
+        <canvas id="graph" aria-label="可缩放的函数图像"></canvas><div class="empty-state" id="empty-state" hidden>表达式无法求值</div><div class="graph-caption">在图表区域滚轮缩放，按住并拖拽移动坐标轴</div>
+      </section>
+    </section>
+  </main>
+  <script src="./app.js"></script>
+</body>
+</html>
